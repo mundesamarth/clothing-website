@@ -1,10 +1,8 @@
-import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
 } from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 const firebaseConfig = {
@@ -27,6 +25,7 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInGooglePopUp = () => signInWithPopup(auth, provider);
+
 
 // setting up the database
 export const db = getFirestore();
