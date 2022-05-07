@@ -14,11 +14,21 @@ const SignUp = () => {
         const {name,value} = event.target;
         setFormFeilds({...formFeilds,[name]:value})
   };
-  console.log(formFeilds)
+
+  const handleSubmit = (event) =>{
+        event.preventDefault();
+
+
+        if(password !== confirmPassword){
+            alert("Password does not match");
+            return
+        }
+  }
+
   return (
     <div>
       <h2>Sign up with email and password</h2>
-      <form onSubmit={() => {}}>
+      <form onSubmit={() => {handleSubmit}}>
         <label>Display Name</label>
         <input required type="text" onChange={onHandle} name="displayName" value={displayName}></input>
 

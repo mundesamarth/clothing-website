@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -31,13 +32,14 @@ export const signInGooglePopUp = () => signInWithPopup(auth, provider);
 export const db = getFirestore();
 
 export const createUserDocFromAuth = async (userAuth) => {
+    if(!userAuth) return;
   const userRef = doc(db, "user", userAuth.uid);
   const userSnapshot = await getDoc(userRef);
 
   // if user snapshot  does not exist,  we create one
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
-    const createdAt = new Date();
+    const createdAt = new Date();  
 
     try {
       await setDoc(userRef, { displayName, email, createdAt });
@@ -47,3 +49,11 @@ export const createUserDocFromAuth = async (userAuth) => {
   }
   return userRef; // if user snapshot does exist
 };
+
+
+// This method is used to sign up with email and password direatly
+export const createAuthUserWithEmailAndPassword = async (password,email) =>{
+    if(!email || !password) return;
+
+    return  createAuthUserWithEmailAndPassword(auth,email,password);
+}
