@@ -5,8 +5,6 @@ import {
 
 import SignUp from "../../components/sign-up-form/sign-up-form.components";
 
-
-
 const SignIn = () => {
   const logGoogleUser = async () => {
     const { user } = await signInGooglePopUp();
@@ -17,7 +15,7 @@ const SignIn = () => {
     <div>
       <h1>Welcome To Sign In Page</h1>
       <button onClick={logGoogleUser}>Sign IN</button>
-      <SignUp/>
+      <SignUp />
     </div>
   );
 };
